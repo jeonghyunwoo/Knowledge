@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 트렌드 논문 — 2026년 5월</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --surface2: #ebebeb;
+      --border: #d4d4d4;
+      --text: #111111;
+      --text-muted: #555555;
+      --accent: royalblue;
+      --accent2: firebrick;
+      --accent3: forestgreen;
+      --accent4: gold;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 2.5rem 1.5rem 5rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      border-bottom: 2px solid var(--text);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    .page-header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .page-header .meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+    .page-header .meta span {
+      margin-right: 1.2rem;
+    }
+
+    /* ── Section title ── */
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: royalblue;
+      border-left: 4px solid royalblue;
+      padding-left: 0.7rem;
+      margin: 2.5rem 0 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Summary table ── */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+    }
+    .summary-table thead tr {
+      background: var(--text);
+      color: var(--bg);
+    }
+    .summary-table thead th {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    .summary-table tbody tr:nth-child(odd) {
+      background: var(--surface);
+    }
+    .summary-table tbody tr:nth-child(even) {
+      background: var(--bg);
+    }
+    .summary-table tbody tr:hover {
+      background: #e8eeff;
+    }
+    .summary-table td {
+      padding: 0.55rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .summary-table td:first-child {
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+      width: 2rem;
+    }
+    .summary-table .tag {
+      display: inline-block;
+      background: #e8eeff;
+      color: royalblue;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      padding: 0.1rem 0.45rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .summary-table a {
+      color: royalblue;
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+    }
+    .summary-table a:hover { text-decoration: underline; }
+
+    /* ── Trend cards ── */
+    .trend-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 640px) {
+      .trend-grid { grid-template-columns: 1fr; }
+    }
+
+    .trend-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .trend-card-header {
+      background: var(--surface2);
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .trend-num {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: royalblue;
+      min-width: 1.4rem;
+      margin-top: 0.05rem;
+    }
+    .trend-topic {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .trend-card-body {
+      padding: 0.8rem 1rem;
+    }
+    .trend-paper {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .trend-use {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+    .trend-use strong {
+      color: forestgreen;
+      font-weight: 600;
+    }
+    .arxiv-badge {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      background: #fff8e0;
+      border: 1px solid #e0c800;
+      color: #7a6000;
+      border-radius: 3px;
+      padding: 0.05rem 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .arxiv-badge a { color: inherit; text-decoration: none; }
+    .arxiv-badge a:hover { text-decoration: underline; }
+
+    /* ── Divider ── */
+    hr.section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0 2.5rem;
+    }
+
+    /* ── Detail sections ── */
+    .detail-item {
+      margin-bottom: 2.8rem;
+    }
+    .detail-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .detail-num {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--bg);
+      background: royalblue;
+      border-radius: 3px;
+      padding: 0.1rem 0.45rem;
+      flex-shrink: 0;
+    }
+    .detail-topic-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      background: var(--surface2);
+      border-radius: 3px;
+      padding: 0.1rem 0.5rem;
+    }
+    .detail-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+    .detail-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .detail-meta a {
+      color: royalblue;
+      text-decoration: none;
+    }
+    .detail-meta a:hover { text-decoration: underline; }
+
+    .sub-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 0.9rem 0 0.35rem;
+    }
+    .sub-label.blue { color: royalblue; }
+    .sub-label.green { color: forestgreen; }
+
+    .detail-body p {
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .use-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .use-list li {
+      font-size: 0.88rem;
+      padding: 0.25rem 0 0.25rem 1.1rem;
+      position: relative;
+      color: var(--text);
+    }
+    .use-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: forestgreen;
+      font-size: 0.8rem;
+    }
+
+    /* ── Trend summary box ── */
+    .trend-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+    @media (max-width: 580px) {
+      .trend-summary-grid { grid-template-columns: 1fr; }
+    }
+    .trend-summary-item {
+      background: var(--surface);
+      border-left: 4px solid royalblue;
+      border-radius: 0 5px 5px 0;
+      padding: 0.7rem 0.9rem;
+    }
+    .trend-summary-item h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .trend-summary-item p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .trend-summary-item:nth-child(2) { border-left-color: firebrick; }
+    .trend-summary-item:nth-child(3) { border-left-color: forestgreen; }
+    .trend-summary-item:nth-child(4) { border-left-color: #c8a000; }
+
+    /* ── Footer ── */
+    .page-footer {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .page-footer a { color: royalblue; text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══ -->
+  <header class="page-header">
+    <h1>AI 최신 트렌드 논문 정리</h1>
+    <div class="meta">
+      <span>수집일 <strong>2026-05-29</strong></span>
+      <span>출처 <strong>arXiv — cs.LG · cs.AI · cs.MA</strong></span>
+      <span>대상 기간 <strong>2026년 4~5월</strong></span>
+    </div>
+  </header>
+
+  <!-- ══ SUMMARY TABLE ══ -->
+  <div class="section-title">요약 표</div>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>트렌드 주제</th>
+        <th>논문명</th>
+        <th>arXiv</th>
+        <th>구체적 활용방안</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><span class="tag">온디바이스 LLM</span></td>
+        <td>MobileMoE: Scaling On-Device Mixture of Experts</td>
+        <td>cs.LG 2026.05</td>
+        <td>스마트폰 오프라인 AI, IoT 실시간 추론</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><span class="tag">영상 생성</span></td>
+        <td>Image-to-Video Diffusion: From Foundations to Open Frontiers</td>
+        <td><a href="https://arxiv.org/abs/2605.17248" target="_blank">2605.17248</a></td>
+        <td>광고·스토리보드 자동 애니메이션화</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><span class="tag">멀티모달 추천</span></td>
+        <td>General Framework for Multimodal LLM-Based Recommendation</td>
+        <td><a href="https://arxiv.org/html/2605.09338v1" target="_blank">2605.09338</a></td>
+        <td>e-커머스 초개인화, 스트리밍 추천</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><span class="tag">코드 품질</span></td>
+        <td>AI-Generated Smells: Code & Architecture in LLM-Driven Dev</td>
+        <td><a href="https://arxiv.org/abs/2605.02741" target="_blank">2605.02741</a></td>
+        <td>코드 리뷰 체크리스트, 정적 분석 강화</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><span class="tag">저장소 코드 생성</span></td>
+        <td>LLM-Assisted Repo-Level Generation with Spec-Driven Engineering</td>
+        <td><a href="https://arxiv.org/abs/2605.02455" target="_blank">2605.02455</a></td>
+        <td>마이크로서비스 스캐폴딩 자동화</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><span class="tag">에이전트 한계</span></td>
+        <td>Constraint Decay: Fragility of LLM Agents in Backend Code Gen</td>
+        <td><a href="https://arxiv.org/abs/2605.06445" target="_blank">2605.06445</a></td>
+        <td>제약 분할 전략, 오류 내성 아키텍처 설계</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><span class="tag">다중 에이전트 RL</span></td>
+        <td>Quantum Advantage in Multi-Agent Reinforcement Learning</td>
+        <td><a href="https://arxiv.org/abs/2605.14235" target="_blank">2605.14235</a></td>
+        <td>물류 최적화, 다중 로봇 협력 시뮬레이션</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><span class="tag">의료 이미지</span></td>
+        <td>Cross Modality Image Translation in Medical Imaging</td>
+        <td><a href="https://arxiv.org/abs/2605.13686" target="_blank">2605.13686</a></td>
+        <td>MRI↔CT 가상 변환, 방사선 피폭 감소</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><span class="tag">보안 트래픽 분석</span></td>
+        <td>Multimodal Reasoning with LLM for Encrypted Traffic</td>
+        <td><a href="https://arxiv.org/abs/2604.08140" target="_blank">2604.08140</a></td>
+        <td>SOC 이상 탐지 자동화, 위협 분석 리포트</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><span class="tag">GraphRAG</span></td>
+        <td>When to Use Graphs in RAG: Comprehensive Analysis</td>
+        <td><a href="https://arxiv.org/html/2506.05690v3" target="_blank">2506.05690</a></td>
+        <td>기업 지식 관리 시스템, 의료·법률 Q&A</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══ QUICK CARD GRID ══ -->
+  <div class="section-title">트렌드 한눈에 보기</div>
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">01</span><span class="trend-topic">온디바이스 경량 LLM</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">MobileMoE: Scaling On-Device MoE</div>
+        <div class="trend-use"><strong>활용 ▸</strong> 스마트폰 오프라인 AI, IoT 실시간 추론, 클라우드 비용 절감</div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">02</span><span class="trend-topic">영상 생성 / 디퓨전</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Image-to-Video Diffusion Survey</div>
+        <div class="trend-use"><strong>활용 ▸</strong> 광고 자동 애니메이션화, 제품 사진→홍보 영상</div>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2605.17248" target="_blank">2605.17248</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">03</span><span class="trend-topic">멀티모달 추천 시스템</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Multimodal LLM Recommendation Framework</div>
+        <div class="trend-use"><strong>활용 ▸</strong> e-커머스 초개인화, 스트리밍 플랫폼 다중 신호 추천</div>
+        <div class="arxiv-badge"><a href="https://arxiv.org/html/2605.09338v1" target="_blank">2605.09338</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">04</span><span class="trend-topic">AI 코드 품질 / 기술 부채</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">AI-Generated Smells</div>
+        <div class="trend-use"><strong>활용 ▸</strong> 코드 리뷰 체크리스트 재설계, 정적 분석 AI 규칙셋 추가</div>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2605.02741" target="_blank">2605.02741</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">05</span><span class="trend-topic">저장소 수준 코드 생성</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Spec-Driven Repo-Level Code Generation</div>
+        <div class="trend-use"><strong>활용 ▸</strong> 마이크로서비스 스캐폴딩, Spec-first 개발 워크플로우</div>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2605.02455" target="_blank">2605.02455</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">06</span><span class="trend-topic">LLM 에이전트 한계</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Constraint Decay in LLM Agents</div>
+        <div class="trend-use"><strong>활용 ▸</strong> 제약 분할 설계, 단계별 검증 체크포인트</div>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2605.06445" target="_blank">2605.06445</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">07</span><span class="trend-topic">다중 에이전트 강화학습</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Quantum Advantage in MARL</div>
+        <div class="trend-use"><strong>활용 ▸</strong> 물류 최적화, 다중 로봇 협력 시뮬레이션</div>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2605.14235" target="_blank">2605.14235</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">08</span><span class="trend-topic">의료 이미지 모달리티 변환</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Cross Modality Medical Image Translation</div>
+        <div class="trend-use"><strong>활용 ▸</strong> MRI↔CT 가상 변환, 방사선 피폭 감소</div>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2605.13686" target="_blank">2605.13686</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">09</span><span class="trend-topic">암호화 트래픽 분석</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Multimodal LLM for Encrypted Traffic</div>
+        <div class="trend-use"><strong>활용 ▸</strong> SOC 이상 탐지 자동화, 위협 자연어 리포트</div>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2604.08140" target="_blank">2604.08140</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header"><span class="trend-num">10</span><span class="trend-topic">GraphRAG 적용 기준</span></div>
+      <div class="trend-card-body">
+        <div class="trend-paper">When to Use Graphs in RAG</div>
+        <div class="trend-use"><strong>활용 ▸</strong> 기업 지식 관리, 의료·법률 다단계 추론 Q&A</div>
+        <div class="arxiv-badge"><a href="https://arxiv.org/html/2506.05690v3" target="_blank">2506.05690</a></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══ DETAIL SECTIONS ══ -->
+  <div class="section-title">논문별 상세 내용</div>
+
+  <!-- 01 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">01</span>
+      <span class="detail-topic-label">온디바이스 경량 LLM</span>
+    </div>
+    <div class="detail-title">MobileMoE: Scaling On-Device Mixture of Experts</div>
+    <div class="detail-meta">arXiv cs.LG — 2026년 5월</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>스마트폰·엣지 디바이스에서 MoE(Mixture of Experts) 구조 대형 모델을 효율적으로 실행하는 방법 제시. 기존 MoE는 GPU 클러스터를 전제로 설계되었으나, MobileMoE는 메모리 제약과 배터리 효율을 동시에 고려한 경량화 기법 도입.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>스마트폰 앱 내 오프라인 AI 기능 내장 (인터넷 없이 동작)</li>
+        <li>IoT 센서·카메라 기기에서 실시간 추론</li>
+        <li>클라우드 API 비용 절감 및 개인정보 로컬 처리</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">02</span>
+      <span class="detail-topic-label">영상 생성 / 디퓨전</span>
+    </div>
+    <div class="detail-title">Image-to-Video Diffusion: From Foundations to Open Frontiers</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2605.17248" target="_blank">2605.17248</a> — 2026-05-17</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>이미지→영상(I2V) 디퓨전 모델을 독립 주제로 처음 체계화한 서베이 논문. 태스크 정의·모델 아키텍처·데이터셋·평가 지표를 망라하고, 아키텍처와 학습 패러다임 기준의 분류 체계(taxonomy) 제시.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>광고·스토리보드 자동 애니메이션화</li>
+        <li>제품 사진 한 장 → 홍보 영상 자동 생성</li>
+        <li>웹툰·일러스트를 단편 클립으로 변환하는 크리에이터 도구</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">03</span>
+      <span class="detail-topic-label">멀티모달 추천 시스템</span>
+    </div>
+    <div class="detail-title">General Framework for Multimodal LLM-Based Recommendation</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/html/2605.09338v1" target="_blank">2605.09338</a> — 2026년 5월</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>텍스트·이미지·영상·오디오를 동시에 처리해 추천 품질을 높이는 대규모 시스템 설계 프레임워크. GPT-4V·Gemini 수준의 멀티모달 추론을 추천 파이프라인에 적용하는 방법론 제시.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>e-커머스 초개인화 추천 (상품 이미지+리뷰 텍스트+영상 동시 분석)</li>
+        <li>넷플릭스·유튜브 류 스트리밍 플랫폼 다중 신호 기반 콘텐츠 추천</li>
+        <li>음악 플랫폼 오디오+가사+앨범 아트 융합 추천</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">04</span>
+      <span class="detail-topic-label">AI 코드 품질 / 기술 부채</span>
+    </div>
+    <div class="detail-title">AI-Generated Smells: Code & Architecture in LLM and Agent-Driven Development</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2605.02741" target="_blank">2605.02741</a> — 2026-05-04</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>LLM·에이전트 기반 개발에서 생성된 코드의 기술 부채 패턴("AI 코드 냄새") 체계적 분류. AI는 고전적 코드 냄새와는 다른 "기계 특유의 결함 패턴"을 도입함을 실증. 프롬프트 중심 개발에서 아키텍처 복잡도 관리 중심으로의 패러다임 전환 요청.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>AI 코딩 도구 도입 기업의 코드 리뷰 체크리스트 재설계</li>
+        <li>SonarQube 등 정적 분석 도구에 AI-specific 규칙셋 추가</li>
+        <li>아키텍처 복잡도 관리 중심으로 AI 개발 가이드라인 전환</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">05</span>
+      <span class="detail-topic-label">저장소 수준 코드 생성</span>
+    </div>
+    <div class="detail-title">LLM-Assisted Repo-Level Generation with Structured Spec-Driven Engineering</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2605.02455" target="_blank">2605.02455</a> — 2026-05-04</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>LLM의 코드 생성 능력은 함수 단위에서 우수하지만 저장소 전체 규모에서는 품질이 급감. 구조화된 명세(Spec) 아티팩트를 가이드로 활용하는 SSDE(Structured Spec-Driven Engineering) 패러다임 제안.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>대형 소프트웨어 프로젝트 모듈 자동 생성</li>
+        <li>마이크로서비스 스캐폴딩 및 보일러플레이트 자동화</li>
+        <li>팀 단위 AI 협업 개발 시 명세 우선(Spec-first) 워크플로우 도입</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 06 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">06</span>
+      <span class="detail-topic-label">LLM 에이전트 한계 분석</span>
+    </div>
+    <div class="detail-title">Constraint Decay: The Fragility of LLM Agents in Backend Code Generation</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2605.06445" target="_blank">2605.06445</a> — 2026-05-07</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>백엔드 코드 생성 시 제약 조건이 누적될수록 LLM 에이전트 성능이 급격히 저하되는 "constraint decay" 현상 실증. 구조적 요구사항이 많아질수록 에이전트가 초기 제약을 잊거나 무시하는 패턴 발견.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>AI 에이전트 기반 백엔드 자동화 설계 시 제약 조건 분할(chunking) 전략 적용</li>
+        <li>오류 내성 아키텍처: 단계별 검증 체크포인트 삽입</li>
+        <li>에이전트 성능 벤치마크에 constraint accumulation 시나리오 추가</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 07 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">07</span>
+      <span class="detail-topic-label">다중 에이전트 강화학습</span>
+    </div>
+    <div class="detail-title">Quantum Advantage in Multi-Agent Reinforcement Learning</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2605.14235" target="_blank">2605.14235</a> — 2026-05-14</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>양자 얽힘(quantum entanglement)을 활용한 MARL 에이전트 조정 실험. CHSH 게임에서 얽힘 기반 QMARL 에이전트가 Tsirelson 한계(0.854)에 근접하며 고전 알고리즘의 이론적 한계(0.75)를 돌파함을 실증.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>복잡한 물류·공급망 최적화 (다중 에이전트 협력 필요 시나리오)</li>
+        <li>양자컴퓨팅 기반 다중 로봇 협력 시뮬레이션 연구</li>
+        <li>금융 포트폴리오 다중 에이전트 최적화 탐색</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 08 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">08</span>
+      <span class="detail-topic-label">의료 이미지 모달리티 변환</span>
+    </div>
+    <div class="detail-title">Cross Modality Image Translation In Medical Imaging Using Generative Frameworks</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2605.13686" target="_blank">2605.13686</a> — 2026-05-13</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>7가지 생성 모델(Pix2Pix, CycleGAN, SRGAN, LDM, LDM+ControlNet, Brownian Bridge, Flow Matching)로 MRI↔CT 가상 변환 성능을 11개 데이터셋·3개 해부 부위·4개 변환 방향에 걸쳐 비교한 대규모 벤치마크.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>추가 촬영 없이 타 모달리티 이미지 합성 → 방사선 피폭 감소</li>
+        <li>희귀 모달리티 데이터 증강으로 AI 진단 모델 학습 데이터 확보</li>
+        <li>저소득 의료기관에서 보유하지 않은 촬영 장비 가상 보완</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 09 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">09</span>
+      <span class="detail-topic-label">암호화 트래픽 멀티모달 분석</span>
+    </div>
+    <div class="detail-title">Multimodal Reasoning with LLM for Encrypted Traffic Interpretation</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2604.08140" target="_blank">2604.08140</a> — 2026년 4월</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>암호화된 네트워크 트래픽을 멀티모달 LLM 추론으로 해석하는 mmTraffic 시스템. 기존 딥러닝 기반 트래픽 분류를 넘어 인간이 읽을 수 있는 근거 기반 해석 리포트 자동 생성.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>기업 보안 운영센터(SOC) 이상 탐지 자동화</li>
+        <li>네트워크 위협 분석 → 자연어 설명 리포트 자동 생성</li>
+        <li>보안 담당자 교육용 트래픽 패턴 시각화 도구</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">10</span>
+      <span class="detail-topic-label">GraphRAG 적용 기준 분석</span>
+    </div>
+    <div class="detail-title">When to Use Graphs in RAG: A Comprehensive Analysis for GraphRAG</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/html/2506.05690v3" target="_blank">2506.05690</a></div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>GraphRAG(그래프 구조 기반 RAG)가 일반 벡터 RAG 대비 효과적인 조건을 체계적으로 분석한 종합 연구. 엔티티 관계·계층적 의존성이 중요한 도메인에서 그래프가 유리함을 실증하고 적용 기준 프레임워크 제시.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list">
+        <li>기업 내 지식 관리 시스템: 부서 간 관계·프로세스 연결이 많은 문서에 GraphRAG 적용</li>
+        <li>의료·법률 분야 다단계 추론 Q&A 시스템 구축</li>
+        <li>단순 문서 검색은 벡터 RAG, 복합 관계 추론은 GraphRAG 분기 설계</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══ KEY TRENDS ══ -->
+  <div class="section-title">주요 흐름 요약</div>
+  <div class="trend-summary-grid">
+    <div class="trend-summary-item">
+      <h4>경량화 &amp; 온디바이스</h4>
+      <p>클라우드 없이 스마트폰·엣지에서 실행 가능한 모델로 급속 이동. MoE 아키텍처의 모바일 적용이 핵심 과제로 부상.</p>
+    </div>
+    <div class="trend-summary-item">
+      <h4>코드 에이전트 현실 점검</h4>
+      <p>AI 코드 생성의 품질 문제·한계를 실증적으로 파헤치는 논문 급증. "생성"에서 "아키텍처 관리"로 관심 이동.</p>
+    </div>
+    <div class="trend-summary-item">
+      <h4>멀티모달 실용화</h4>
+      <p>추천·보안·의료 등 버티컬 도메인에 멀티모달 추론 적용 본격화. 연구 단계를 벗어나 시스템 설계 논문 증가.</p>
+    </div>
+    <div class="trend-summary-item">
+      <h4>GraphRAG 성숙</h4>
+      <p>"언제 그래프를 써야 하나"를 논의할 만큼 GraphRAG가 실용 단계 진입. 적용 기준 프레임워크 정립 시도.</p>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="page-footer">
+    출처: <a href="https://arxiv.org/list/cs.LG/recent" target="_blank">arXiv cs.LG</a> ·
+    <a href="https://arxiv.org/list/cs.AI/current" target="_blank">arXiv cs.AI</a> ·
+    <a href="https://arxiv.org/list/cs.MA/current" target="_blank">arXiv cs.MA</a> |
+    수집일 2026-05-29
+  </footer>
+
+</body>
+</html>
