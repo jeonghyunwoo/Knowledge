@@ -21,6 +21,7 @@ AI · 데이터 분석 분야의 리서치 산출물을 모아두는 공개 저�
 | 파일 | 주제 | 날짜 |
 |------|------|------|
 | [ai-trends-may2026.html](https://jeonghyunwoo.github.io/Knowledge/ai-trends-may2026.html) | arXiv AI 트렌드 논문 10선 — 2026년 5월 | 2026-05-29 |
+| [ai-trends-2026-06-12.html](https://jeonghyunwoo.github.io/Knowledge/ai-trends-2026-06-12.html) | arXiv AI 트렌드 논문 10선 — 2026-06-12 | 2026-06-12 |
 
 ---
 

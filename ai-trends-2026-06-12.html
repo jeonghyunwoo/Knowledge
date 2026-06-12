@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 트렌드 논문 — 2026-06-12</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#ffffff;--surface:#f5f5f5;--surface2:#ebebeb;--border:#d4d4d4;--text:#111111;--text-muted:#555555;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans KR','IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;padding:2.5rem 1.5rem 5rem;max-width:980px;margin:0 auto;}
+    .page-header{border-bottom:2px solid var(--text);padding-bottom:1rem;margin-bottom:2rem;}
+    .page-header h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;}
+    .page-header .meta{font-size:0.82rem;color:var(--text-muted);margin-top:0.3rem;}
+    .page-header .meta span{margin-right:1.2rem;}
+    .section-title{font-size:1.05rem;font-weight:700;color:royalblue;border-left:4px solid royalblue;padding-left:0.7rem;margin:2.5rem 0 1rem;}
+    .summary-table{width:100%;border-collapse:collapse;font-size:0.88rem;}
+    .summary-table thead tr{background:var(--text);color:var(--bg);}
+    .summary-table thead th{padding:0.6rem 0.8rem;text-align:left;font-weight:600;}
+    .summary-table tbody tr:nth-child(odd){background:var(--surface);}
+    .summary-table tbody tr:hover{background:#e8eeff;}
+    .summary-table td{padding:0.55rem 0.8rem;border-bottom:1px solid var(--border);vertical-align:top;}
+    .summary-table td:first-child{font-weight:700;color:var(--text-muted);text-align:center;width:2rem;}
+    .tag{display:inline-block;background:#e8eeff;color:royalblue;border-radius:4px;font-size:0.78rem;padding:0.1rem 0.45rem;font-weight:600;white-space:nowrap;}
+    .summary-table a{color:royalblue;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;}
+    .summary-table a:hover{text-decoration:underline;}
+    .trend-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:0.5rem;}
+    .trend-card{border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+    .trend-card-header{background:var(--surface2);padding:0.65rem 1rem;display:flex;align-items:flex-start;gap:0.6rem;}
+    .trend-num{font-size:0.78rem;font-weight:700;color:royalblue;min-width:1.4rem;}
+    .trend-topic{font-size:0.82rem;font-weight:700;color:var(--text-muted);}
+    .trend-card-body{padding:0.8rem 1rem;}
+    .trend-paper{font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;line-height:1.4;}
+    .arxiv-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;background:#fff8e0;border:1px solid #e0c800;color:#7a6000;border-radius:3px;padding:0.05rem 0.4rem;margin-top:0.5rem;}
+    .arxiv-badge a{color:inherit;text-decoration:none;}
+    hr.sd{border:none;border-top:1px solid var(--border);margin:3rem 0 2.5rem;}
+    .detail-item{margin-bottom:2.8rem;}
+    .detail-header{display:flex;align-items:baseline;gap:0.8rem;margin-bottom:0.8rem;flex-wrap:wrap;}
+    .detail-num{font-size:0.78rem;font-weight:700;color:#fff;background:royalblue;border-radius:3px;padding:0.1rem 0.45rem;}
+    .detail-topic-label{font-size:0.78rem;color:var(--text-muted);font-weight:500;background:var(--surface2);border-radius:3px;padding:0.1rem 0.5rem;}
+    .detail-title{font-size:1.05rem;font-weight:700;line-height:1.4;margin-bottom:0.6rem;}
+    .detail-meta{font-size:0.78rem;color:var(--text-muted);margin-bottom:0.9rem;font-family:'IBM Plex Mono',monospace;}
+    .detail-meta a{color:royalblue;text-decoration:none;}
+    .sub-label{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin:0.9rem 0 0.35rem;}
+    .sub-label.blue{color:royalblue;}.sub-label.green{color:forestgreen;}
+    .detail-body p{font-size:0.88rem;margin-bottom:0.4rem;}
+    .use-list{list-style:none;padding:0;margin:0;}
+    .use-list li{font-size:0.88rem;padding:0.25rem 0 0.25rem 1.1rem;position:relative;}
+    .use-list li::before{content:"▸";position:absolute;left:0;color:forestgreen;font-size:0.8rem;}
+    .trend-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;}
+    .trend-summary-item{background:var(--surface);border-left:4px solid royalblue;border-radius:0 5px 5px 0;padding:0.7rem 0.9rem;}
+    .trend-summary-item h4{font-size:0.85rem;font-weight:700;margin-bottom:0.3rem;}
+    .trend-summary-item p{font-size:0.82rem;color:var(--text-muted);}
+    .page-footer{margin-top:4rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text-muted);}
+    .page-footer a{color:royalblue;text-decoration:none;}
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>AI 최신 트렌드 논문 정리</h1>
+    <div class="meta">
+      <span>수집일 <strong>2026-06-12</strong></span>
+      <span>기간 <strong>2026-06-05 ~ 2026-06-12</strong></span>
+      <span>출처 <strong>arXiv — cs.AI · cs.LG · cs.CV · cs.CL</strong></span>
+    </div>
+  </header>
+
+  <div class="section-title">요약 표</div>
+  <table class="summary-table">
+    <thead><tr><th>#</th><th>트렌드 주제</th><th>논문명</th><th>arXiv</th><th>대표 활용방안</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><span class="tag">동적 환경 에이전트 벤치마크</span></td>
+        <td>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</td>
+        <td><a href="https://arxiv.org/abs/2606.13681v1" target="_blank">2606.13681</a></td>
+        <td>변화하는 소프트웨어 환경에서 AI 에이전트 성능 평가</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><span class="tag">유추 기반 강화 파인튜닝</span></td>
+        <td>Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning</td>
+        <td><a href="https://arxiv.org/abs/2606.13680v1" target="_blank">2606.13680</a></td>
+        <td>수학·코딩 등 복잡한 추론 문제 해결 고도화</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><span class="tag">인터리브드 멀티모달 생성</span></td>
+        <td>InterleaveThinker: Reinforcing Agentic Interleaved Generation</td>
+        <td><a href="https://arxiv.org/abs/2606.13679v1" target="_blank">2606.13679</a></td>
+        <td>만화·스토리보드 자동 생성 시스템</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><span class="tag">로봇 관절 도구 조작</span></td>
+        <td>Mana: Dexterous Manipulation of Articulated Tools</td>
+        <td><a href="https://arxiv.org/abs/2606.13677v1" target="_blank">2606.13677</a></td>
+        <td>제조 현장의 복잡한 공구 사용 자동화</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><span class="tag">로봇 정책 플로우 조향</span></td>
+        <td>Improving Robotic Generalist Policies via Flow Reversal Steering</td>
+        <td><a href="https://arxiv.org/abs/2606.13675v1" target="_blank">2606.13675</a></td>
+        <td>미지의 환경에서 로봇 정책 즉각 적응</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><span class="tag">세계 모델 기반 로봇 시뮬레이션</span></td>
+        <td>WEAVER, Better, Faster, Longer: An Effective World Model for Robotic Manipulation</td>
+        <td><a href="https://arxiv.org/abs/2606.13672v1" target="_blank">2606.13672</a></td>
+        <td>실제 로봇 실험 전 가상 환경 정책 검증</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><span class="tag">LLM 재현성 자동 평가</span></td>
+        <td>Automated reproducibility assessments in the social and behavioral sciences using large language models</td>
+        <td><a href="https://arxiv.org/abs/2606.13670v1" target="_blank">2606.13670</a></td>
+        <td>학술지 논문 투고 전 자동 재현성 사전 검토</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><span class="tag">과학 지식 그래프 오케스트레이션</span></td>
+        <td>Agents-K1: Towards Agent-native Knowledge Orchestration</td>
+        <td><a href="https://arxiv.org/abs/2606.13669v1" target="_blank">2606.13669</a></td>
+        <td>신약 개발을 위한 문헌 기반 가설 자동 생성</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><span class="tag">온정책 증류 희소성 분석</span></td>
+        <td>Dense Supervision, Sparse Updates: On the Sparsity and Geometry of On-Policy Distillation</td>
+        <td><a href="https://arxiv.org/abs/2606.13657v1" target="_blank">2606.13657</a></td>
+        <td>효율적인 모델 파인튜닝을 위한 파라미터 선택 전략 수립</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><span class="tag">슬로바키아어 임베딩 벤치마크</span></td>
+        <td>SkMTEB: Slovak Massive Text Embedding Benchmark and Model Adaptation</td>
+        <td><a href="https://arxiv.org/abs/2606.13647v1" target="_blank">2606.13647</a></td>
+        <td>슬로바키아어 검색 및 추천 시스템 개발</td>
+      </tr></tbody>
+  </table>
+
+  <div class="section-title">트렌드 한눈에 보기</div>
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">01</span>
+        <span class="trend-topic">동적 환경 에이전트 벤치마크</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</div>
+        <ul class="use-list"><li>변화하는 소프트웨어 환경에서 AI 에이전트 성능 평가</li><li>장기 운영 챗봇의 지식 갱신 및 메모리 관리</li><li>동적 업무 환경 적응형 자동화 에이전트 개발</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13681v1" target="_blank">2606.13681</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">02</span>
+        <span class="trend-topic">유추 기반 강화 파인튜닝</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning</div>
+        <ul class="use-list"><li>수학·코딩 등 복잡한 추론 문제 해결 고도화</li><li>법률·의학 분야의 유사 사례 기반 의사결정 지원</li><li>교육용 AI 튜터의 유추적 설명 생성</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13680v1" target="_blank">2606.13680</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">03</span>
+        <span class="trend-topic">인터리브드 멀티모달 생성</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">InterleaveThinker: Reinforcing Agentic Interleaved Generation</div>
+        <ul class="use-list"><li>만화·스토리보드 자동 생성 시스템</li><li>단계별 시각 가이드 매뉴얼 제작</li><li>로봇 조작 시퀀스의 시각적 계획 생성</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13679v1" target="_blank">2606.13679</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">04</span>
+        <span class="trend-topic">로봇 관절 도구 조작</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Mana: Dexterous Manipulation of Articulated Tools</div>
+        <ul class="use-list"><li>제조 현장의 복잡한 공구 사용 자동화</li><li>의료 로봇의 정밀 기구 조작</li><li>가정용 서비스 로봇의 일상 도구 활용</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13677v1" target="_blank">2606.13677</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">05</span>
+        <span class="trend-topic">로봇 정책 플로우 조향</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Improving Robotic Generalist Policies via Flow Reversal Steering</div>
+        <ul class="use-list"><li>미지의 환경에서 로봇 정책 즉각 적응</li><li>소량 데이터로 신규 로봇 태스크 성능 개선</li><li>산업 로봇의 이상 상황 대응 능력 강화</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13675v1" target="_blank">2606.13675</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">06</span>
+        <span class="trend-topic">세계 모델 기반 로봇 시뮬레이션</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">WEAVER, Better, Faster, Longer: An Effective World Model for Robotic Manipulation</div>
+        <ul class="use-list"><li>실제 로봇 실험 전 가상 환경 정책 검증</li><li>장기 조작 시퀀스의 일관성 보장 시뮬레이션</li><li>데이터 효율적 로봇 학습 파이프라인 구축</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13672v1" target="_blank">2606.13672</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">07</span>
+        <span class="trend-topic">LLM 재현성 자동 평가</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Automated reproducibility assessments in the social and behavioral sciences using large language models</div>
+        <ul class="use-list"><li>학술지 논문 투고 전 자동 재현성 사전 검토</li><li>대규모 메타분석 및 체계적 문헌 고찰 지원</li><li>연구 무결성 모니터링 플랫폼 구축</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13670v1" target="_blank">2606.13670</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">08</span>
+        <span class="trend-topic">과학 지식 그래프 오케스트레이션</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Agents-K1: Towards Agent-native Knowledge Orchestration</div>
+        <ul class="use-list"><li>신약 개발을 위한 문헌 기반 가설 자동 생성</li><li>연구 동향 및 방법론 계보 자동 분석</li><li>AI 기반 자율 과학 발견 시스템 구축</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13669v1" target="_blank">2606.13669</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">09</span>
+        <span class="trend-topic">온정책 증류 희소성 분석</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">Dense Supervision, Sparse Updates: On the Sparsity and Geometry of On-Policy Distillation</div>
+        <ul class="use-list"><li>효율적인 모델 파인튜닝을 위한 파라미터 선택 전략 수립</li><li>경량화 모델 훈련 비용 절감</li><li>지식 증류 메커니즘 해석 및 디버깅</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13657v1" target="_blank">2606.13657</a></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-header">
+        <span class="trend-num">10</span>
+        <span class="trend-topic">슬로바키아어 임베딩 벤치마크</span>
+      </div>
+      <div class="trend-card-body">
+        <div class="trend-paper">SkMTEB: Slovak Massive Text Embedding Benchmark and Model Adaptation</div>
+        <ul class="use-list"><li>슬로바키아어 검색 및 추천 시스템 개발</li><li>저자원 언어 NLP 벤치마크 구축 방법론 확장</li><li>다국어 임베딩 모델의 언어별 성능 격차 분석</li></ul>
+        <div class="arxiv-badge"><a href="https://arxiv.org/abs/2606.13647v1" target="_blank">2606.13647</a></div>
+      </div>
+    </div></div>
+
+  <hr class="sd">
+
+  <div class="section-title">논문별 상세 내용</div>
+  
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">01</span>
+      <span class="detail-topic-label">동적 환경 에이전트 벤치마크</span>
+    </div>
+    <div class="detail-title">EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13681v1" target="_blank">2606.13681</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>정적 환경을 가정한 기존 LLM 에이전트 평가의 한계를 극복하기 위해 터미널·소프트웨어·소셜 도메인에서 환경 변화를 연속적 업데이트로 모델링하는 EvoArena 벤치마크를 제안한다. 또한 패치 기반 메모리 패러다임인 EvoMem을 도입해 에이전트가 변화하는 환경에 지속적으로 적응할 수 있도록 지원한다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>변화하는 소프트웨어 환경에서 AI 에이전트 성능 평가</li><li>장기 운영 챗봇의 지식 갱신 및 메모리 관리</li><li>동적 업무 환경 적응형 자동화 에이전트 개발</li></ul>
+    </div>
+  </div>
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">02</span>
+      <span class="detail-topic-label">유추 기반 강화 파인튜닝</span>
+    </div>
+    <div class="detail-title">Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13680v1" target="_blank">2606.13680</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>의미적 유사성 기반 RAG가 복잡한 추론 과제에 부적합하다는 문제를 해결하기 위해, 동일한 추론 패턴을 공유하는 유사 문제를 검색·활용하는 RA-RFT 프레임워크를 제안한다. Gold-relevance distillation을 통해 모델이 유추에 의한 추론 능력을 체계적으로 학습하도록 훈련한다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>수학·코딩 등 복잡한 추론 문제 해결 고도화</li><li>법률·의학 분야의 유사 사례 기반 의사결정 지원</li><li>교육용 AI 튜터의 유추적 설명 생성</li></ul>
+    </div>
+  </div>
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">03</span>
+      <span class="detail-topic-label">인터리브드 멀티모달 생성</span>
+    </div>
+    <div class="detail-title">InterleaveThinker: Reinforcing Agentic Interleaved Generation</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13679v1" target="_blank">2606.13679</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>기존 이미지 생성 모델이 텍스트-이미지 교차 시퀀스(interleaved generation)를 생성하지 못하는 한계를 극복하기 위해 InterleaveThinker라는 최초의 멀티에이전트 파이프라인을 도입한다. 이를 통해 시각 내러티브, 가이던스, 체화 조작 등 다양한 응용 분야에서 교차 생성이 가능해진다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>만화·스토리보드 자동 생성 시스템</li><li>단계별 시각 가이드 매뉴얼 제작</li><li>로봇 조작 시퀀스의 시각적 계획 생성</li></ul>
+    </div>
+  </div>
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">04</span>
+      <span class="detail-topic-label">로봇 관절 도구 조작</span>
+    </div>
+    <div class="detail-title">Mana: Dexterous Manipulation of Articulated Tools</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13677v1" target="_blank">2606.13677</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>관절 도구 조작은 내부 자유도 조율과 접촉 상호작용 복잡성으로 인해 로봇공학의 난제였다. Mana는 컴퓨터 애니메이션에서 영감을 얻은 coarse-to-fine 파이프라인으로 시뮬레이션-현실 전이 프레임워크를 구축해 이 문제를 해결한다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>제조 현장의 복잡한 공구 사용 자동화</li><li>의료 로봇의 정밀 기구 조작</li><li>가정용 서비스 로봇의 일상 도구 활용</li></ul>
+    </div>
+  </div>
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">05</span>
+      <span class="detail-topic-label">로봇 정책 플로우 조향</span>
+    </div>
+    <div class="detail-title">Improving Robotic Generalist Policies via Flow Reversal Steering</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13675v1" target="_blank">2606.13675</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>플로우 매칭 기반 범용 로봇 정책에서 어렵거나 새로운 태스크를 수행할 때 적절한 행동을 유도하는 방법인 Flow Reversal Steering(FRS)을 제안한다. 차선책 행동을 역방향 플로우로 통과시켜 잠재 노이즈를 찾고, 이를 가장 가까운 범용 행동 모드로 매핑하는 방식이다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>미지의 환경에서 로봇 정책 즉각 적응</li><li>소량 데이터로 신규 로봇 태스크 성능 개선</li><li>산업 로봇의 이상 상황 대응 능력 강화</li></ul>
+    </div>
+  </div>
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">06</span>
+      <span class="detail-topic-label">세계 모델 기반 로봇 시뮬레이션</span>
+    </div>
+    <div class="detail-title">WEAVER, Better, Faster, Longer: An Effective World Model for Robotic Manipulation</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13672v1" target="_blank">2606.13672</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>로봇 조작을 위한 세계 모델이 충실도(fidelity)·일관성(consistency)·효율성(efficiency)을 동시에 만족해야 한다는 세 가지 기준을 제시하고, 이를 달성하는 WEAVER 모델을 제안한다. 실제 환경 상호작용을 최소화하면서 정책 평가, 개선, 테스트 타임 플래닝을 가능하게 한다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>실제 로봇 실험 전 가상 환경 정책 검증</li><li>장기 조작 시퀀스의 일관성 보장 시뮬레이션</li><li>데이터 효율적 로봇 학습 파이프라인 구축</li></ul>
+    </div>
+  </div>
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">07</span>
+      <span class="detail-topic-label">LLM 재현성 자동 평가</span>
+    </div>
+    <div class="detail-title">Automated reproducibility assessments in the social and behavioral sciences using large language models</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13670v1" target="_blank">2606.13670</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>사회·행동과학 연구의 재현성 평가를 LLM으로 자동화하는 방법을 제안하며, 76편의 논문을 대상으로 LLM 분석 결과와 인간 재분석 결과를 비교한다. 자원 집약적인 기존 재현성 검증 과정을 대규모로 확장 가능하게 만든다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>학술지 논문 투고 전 자동 재현성 사전 검토</li><li>대규모 메타분석 및 체계적 문헌 고찰 지원</li><li>연구 무결성 모니터링 플랫폼 구축</li></ul>
+    </div>
+  </div>
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">08</span>
+      <span class="detail-topic-label">과학 지식 그래프 오케스트레이션</span>
+    </div>
+    <div class="detail-title">Agents-K1: Towards Agent-native Knowledge Orchestration</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13669v1" target="_blank">2606.13669</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>기존 연구 에이전트가 논문을 초록·표면 언급·단순 인용 엣지로만 처리하는 한계를 극복하기 위해, 원시 문서를 에이전트 네이티브 과학 지식 그래프로 변환하는 Agents-K1 파이프라인을 제안한다. 핵심 엔티티, 주장, 증거, 메커니즘, 방법론 계보를 통합해 과학적 추론의 깊이를 높인다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>신약 개발을 위한 문헌 기반 가설 자동 생성</li><li>연구 동향 및 방법론 계보 자동 분석</li><li>AI 기반 자율 과학 발견 시스템 구축</li></ul>
+    </div>
+  </div>
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">09</span>
+      <span class="detail-topic-label">온정책 증류 희소성 분석</span>
+    </div>
+    <div class="detail-title">Dense Supervision, Sparse Updates: On the Sparsity and Geometry of On-Policy Distillation</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13657v1" target="_blank">2606.13657</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>온정책 증류(OPD)가 모델 파라미터를 어떻게 변화시키는지를 분석한 결과, 업데이트가 소규모이고 좌표-희소(coordinate-sparse)하며 FFN 레이어에 집중됨을 발견한다. 이 희소 구조를 활용해 해당 서브네트워크만 훈련해도 전체 성능을 회복할 수 있음을 보인다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>효율적인 모델 파인튜닝을 위한 파라미터 선택 전략 수립</li><li>경량화 모델 훈련 비용 절감</li><li>지식 증류 메커니즘 해석 및 디버깅</li></ul>
+    </div>
+  </div>
+  <div class="detail-item">
+    <div class="detail-header">
+      <span class="detail-num">10</span>
+      <span class="detail-topic-label">슬로바키아어 임베딩 벤치마크</span>
+    </div>
+    <div class="detail-title">SkMTEB: Slovak Massive Text Embedding Benchmark and Model Adaptation</div>
+    <div class="detail-meta">arXiv <a href="https://arxiv.org/abs/2606.13647v1" target="_blank">2606.13647</a> — 2026-06-11</div>
+    <div class="detail-body">
+      <div class="sub-label blue">핵심 내용</div>
+      <p>저자원 언어인 슬로바키아어를 위한 최초의 종합 텍스트 임베딩 벤치마크 SkMTEB를 구축하고, 7개 태스크 유형에 걸친 31개 데이터셋으로 31개 모델을 평가한다. 대형 인스트럭션 튜닝 다국어 모델이 최고 성능을 보이며, 효율적인 로컬 배포용 슬로바키아어 임베딩 모델도 개발했다.</p>
+      <div class="sub-label green">구체적 활용방안</div>
+      <ul class="use-list"><li>슬로바키아어 검색 및 추천 시스템 개발</li><li>저자원 언어 NLP 벤치마크 구축 방법론 확장</li><li>다국어 임베딩 모델의 언어별 성능 격차 분석</li></ul>
+    </div>
+  </div>
+
+  <hr class="sd">
+
+  <div class="section-title">주요 흐름 요약</div>
+  <div class="trend-summary-grid">
+    <div class="trend-summary-item" style="border-left-color:royalblue">
+      <h4>로봇 학습 고도화</h4>
+      <p>세계 모델, 플로우 매칭, 관절 도구 조작 등 로봇이 복잡한 물리적 환경에서 자율적으로 학습·적응하는 연구가 동시다발적으로 발전하고 있다.</p>
+    </div>
+    <div class="trend-summary-item" style="border-left-color:firebrick">
+      <h4>에이전트 환경 설계</h4>
+      <p>동적 환경 벤치마크(EvoArena), 과학 지식 오케스트레이션(Agents-K1), 자율 과학 발견(EurekAgent) 등 에이전트의 성능을 좌우하는 환경 및 인터페이스 설계가 핵심 과제로 부상하고 있다.</p>
+    </div>
+    <div class="trend-summary-item" style="border-left-color:forestgreen">
+      <h4>추론 능력 강화</h4>
+      <p>유추 기반 RAG 파인튜닝, 온정책 증류 희소성 분석, 조합적 추론 일관성 측정 등 LLM의 심층 추론 능력을 체계적으로 향상·평가하는 방법론이 집중적으로 연구되고 있다.</p>
+    </div>
+    <div class="trend-summary-item" style="border-left-color:#c8a000">
+      <h4>멀티모달·공간 이해</h4>
+      <p>인터리브드 텍스트-이미지 생성, 공간 추론 에이전트, 이미지-깊이 공동 생성 등 2D를 넘어 3D 공간과 다중 모달리티를 통합하는 연구가 빠르게 확산되고 있다.</p>
+    </div></div>
+
+  <footer class="page-footer">
+    출처: arXiv cs.AI · cs.LG · cs.CV · cs.CL | 수집일 2026-06-12 |
+    <a href="https://jeonghyunwoo.github.io/Knowledge/ai-trends-2026-06-12.html">영구 링크</a>
+  </footer>
+</body>
+</html>
